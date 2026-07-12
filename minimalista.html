@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltElAlto | Electricistas Profesionales 24/7</title>
+    
+    <style>
+        /* ==========================================
+           1. RESET Y VARIABLES MINIMALISTAS
+        ========================================== */
+        :root {
+            --blanco: #ffffff;
+            --fondo: #f8fafc;
+            --gris-claro: #f1f5f9;
+            --gris-borde: #e2e8f0;
+            --texto-principal: #0f172a;
+            --texto-secundario: #475569;
+            --texto-mutado: #94a3b8;
+            --acento-ambar: #d97706;
+            --acento-ambar-claro: #fbbf24;
+            --acento-azul: #2563eb;
+            --sombra: 0 4px 20px rgba(0,0,0,0.04);
+            --sombra-fuerte: 0 20px 40px rgba(0,0,0,0.06);
+            --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--fuente);
+            background-color: var(--fondo);
+            color: var(--texto-principal);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           2. CONTENEDORES Y UTILIDADES
+        ========================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--texto-principal), var(--acento-ambar));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--texto-secundario);
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .section-header .line {
+            width: 60px;
+            height: 3px;
+            background: var(--acento-ambar);
+            margin: 16px auto 0;
+            border-radius: 3px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.08);
+            color: var(--acento-ambar);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           3. BOTONES
+        ========================================== */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--texto-principal);
+            color: var(--blanco);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transicion);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.15);
+        }
+
+        .btn-ambar {
+            background: var(--acento-ambar);
+            color: var(--blanco);
+        }
+
+        .btn-ambar:hover {
+            background: #b45309;
+            box-shadow: 0 8px 25px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--texto-principal);
+            border: 2px solid var(--gris-borde);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--texto-principal);
+            background: var(--texto-principal);
+            color: var(--blanco);
+        }
+
+        .btn-white {
+            background: var(--blanco);
+            color: var(--texto-principal);
+        }
+
+        .btn-white:hover {
+            background: var(--acento-ambar);
+            color: var(--blanco);
+        }
+
+        /* ==========================================
+           4. IMÁGENES
+        ========================================== */
+        .img-fluid {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .img-rounded {
+            border-radius: 12px;
+        }
+
+        /* ==========================================
+           5. NAVEGACIÓN
+        ========================================== */
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gris-borde);
+            transition: var(--transicion);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--texto-principal);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--acento-ambar);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--texto-secundario);
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transicion);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--acento-ambar);
+            transition: var(--transicion);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--texto-principal);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--texto-principal);
+            border-radius: 2px;
+            transition: var(--transicion);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 0;
+            border-top: 1px solid var(--gris-borde);
+            background: var(--blanco);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--texto-secundario);
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transicion);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--acento-ambar);
+        }
+
+        /* ==========================================
+           6. HERO
+        ========================================== */
+        #hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(180deg, var(--fondo) 0%, var(--blanco) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '⚡';
+            position: absolute;
+            font-size: 400px;
+            right: -100px;
+            bottom: -150px;
+            opacity: 0.03;
+            transform: rotate(-10deg);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--acento-ambar);
+            position: relative;
+        }
+
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--acento-ambar);
+            opacity: 0.2;
+            border-radius: 2px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--texto-secundario);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gris-borde);
+        }
+
+        .hero-stat h4 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--acento-ambar);
+        }
+
+        .hero-stat p {
+            font-size: 13px;
+            color: var(--texto-mutado);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-image {
+            height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--sombra-fuerte);
+            position: relative;
+        }
+
+        .hero-image::after {
+            content: '24/7';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--acento-ambar);
+            color: var(--blanco);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================
+           7. CARACTERÍSTICAS
+        ========================================== */
+        #caracteristicas {
+            background: var(--blanco);
+            padding: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--fondo);
+            border-radius: 12px;
+            transition: var(--transicion);
+            border: 1px solid transparent;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--gris-borde);
+            background: var(--blanco);
+            box-shadow: var(--sombra);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-item p {
+            font-size: 13px;
+            color: var(--texto-mutado);
+            margin: 0;
+        }
+
+        /* ==========================================
+           8. SERVICIOS
+        ========================================== */
+        #servicios {
+            background: var(--fondo);
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .servicio-card {
+            background: var(--blanco);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--gris-borde);
+            transition: var(--transicion);
+            position: relative;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sombra-fuerte);
+            border-color: transparent;
+        }
+
+        .servicio-card .icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .servicio-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .servicio-card p {
+            color: var(--texto-secundario);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .servicio-card .tag {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.06);
+            color: var(--acento-ambar);
+            padding: 2px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           9. PROCESO
+        ========================================== */
+        #proceso {
+            background: var(--blanco);
+        }
+
+        .proceso-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .proceso-step {
+            position: relative;
+        }
+
+        .proceso-step .number {
+            width: 56px;
+            height: 56px;
+            background: var(--acento-ambar);
+            color: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 auto 16px;
+            transition: var(--transicion);
+        }
+
+        .proceso-step:hover .number {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .proceso-step h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .proceso-step p {
+            color: var(--texto-secundario);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* ==========================================
+           10. GALERÍA
+        ========================================== */
+        #galeria {
+            background: var(--fondo);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .galeria-item {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            height: 260px;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transicion);
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .galeria-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--blanco);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transicion);
+        }
+
+        .galeria-item:hover .overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .galeria-item .overlay h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .galeria-item .overlay p {
+            font-size: 13px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* ==========================================
+           11. COBERTURA
+        ========================================== */
+        #cobertura {
+            background: var(--blanco);
+        }
+
+        .cobertura-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .cobertura-lista {
+            list-style: none;
+        }
+
+        .cobertura-lista li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--gris-borde);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cobertura-lista li:last-child {
+            border-bottom: none;
+        }
+
+        .cobertura-lista .zona {
+            font-weight: 600;
+        }
+
+        .cobertura-lista .tiempo {
+            color: var(--acento-ambar);
+            font-weight: 500;
+            font-size: 14px;
+            background: rgba(217, 119, 6, 0.06);
+            padding: 2px 14px;
+            border-radius: 50px;
+        }
+
+        .cobertura-image {
+            height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra-fuerte);
+        }
+
+        /* ==========================================
+           12. TESTIMONIOS
+        ========================================== */
+        #testimonios {
+            background: var(--fondo);
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonio-card {
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--gris-borde);
+            transition: var(--transicion);
+        }
+
+        .testimonio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sombra);
+        }
+
+        .testimonio-card .stars {
+            color: #f59e0b;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .testimonio-card blockquote {
+            color: var(--texto-secundario);
+            font-style: italic;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .testimonio-card .autor {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonio-card .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gris-borde);
+        }
+
+        .testimonio-card .autor-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .testimonio-card .autor-info span {
+            font-size: 13px;
+            color: var(--texto-mutado);
+        }
+
+        /* ==========================================
+           13. CTA / CONTACTO
+        ========================================== */
+        #cta {
+            background: linear-gradient(135deg, var(--texto-principal), #1e293b);
+            color: var(--blanco);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        #cta h2 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        #cta p {
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-size: 18px;
+        }
+
+        #cta .cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ==========================================
+           14. FOOTER
+        ========================================== */
+        footer {
+            background: var(--texto-principal);
+            color: rgba(255,255,255,0.6);
+            padding: 40px 0 24px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand h3 {
+            font-size: 20px;
+            color: var(--blanco);
+            margin-bottom: 8px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            color: var(--blanco);
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transicion);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--blanco);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           15. SCROLL TOP
+        ========================================== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--acento-ambar);
+            color: var(--blanco);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(217, 119, 6, 0.3);
+            transition: var(--transicion);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(217, 119, 6, 0.4);
+        }
+
+        /* ==========================================
+           16. ANIMACIONES
+        ========================================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           17. RESPONSIVE
+        ========================================== */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            .cobertura-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero-content h1 {
+                font-size: 30px;
+            }
+            .hero-stats {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .hero-stat h4 {
+                font-size: 22px;
+            }
+            .section-header h2 {
+                font-size: 28px;
+            }
+            #cta h2 {
+                font-size: 28px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .servicios-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonios-grid {
+                grid-template-columns: 1fr;
+            }
+            .galeria-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            section {
+                padding: 60px 0;
+            }
+            #hero {
+                padding: 100px 0 60px;
+            }
+            .hero-image {
+                height: 280px;
+            }
+            .cobertura-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 26px;
+            }
+            .hero-btns {
+                flex-direction: column;
+            }
+            .hero-btns .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+            .servicio-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">VOLT<span>ELALTO</span></a>
+            <button class="hamburger" id="hamburgerBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#cobertura">Cobertura</a></li>
+                <li><a href="#testimonios">Opiniones</a></li>
+                <li><a href="#cta" class="btn btn-ambar" style="padding: 8px 20px; font-size: 13px;">Urgencias 24/7</a></li>
+            </ul>
+        </div>
+        <div class="container mobile-menu" id="mobileMenu">
+            <a href="#hero" onclick="cerrarMobile()">Inicio</a>
+            <a href="#servicios" onclick="cerrarMobile()">Servicios</a>
+            <a href="#proceso" onclick="cerrarMobile()">Proceso</a>
+            <a href="#galeria" onclick="cerrarMobile()">Galería</a>
+            <a href="#cobertura" onclick="cerrarMobile()">Cobertura</a>
+            <a href="#testimonios" onclick="cerrarMobile()">Opiniones</a>
+            <a href="#cta" onclick="cerrarMobile()" class="btn btn-ambar" style="text-align: center;">Urgencias 24/7</a>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         HERO
+    ========================================== -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="badge">⚡ Servicio Profesional 24/7</span>
+                    <h1>Soluciones Eléctricas <span>de Confianza</span></h1>
+                    <p>Técnicos certificados con años de experiencia en instalaciones, reparaciones y mantenimiento eléctrico para hogares, comercios e industrias.</p>
+                    <div class="hero-btns">
+                        <a href="#cta" class="btn btn-ambar">Solicitar Servicio</a>
+                        <a href="#servicios" class="btn btn-outline">Ver Servicios</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <h4>+120</h4>
+                            <p>Proyectos Completados</p>
+                        </div>
+                        <div class="hero-stat">
+                            <h4>4.9</h4>
+                            <p>Calificación ★</p>
+                        </div>
+                        <div class="hero-stat">
+                            <h4>15+</h4>
+                            <p>Años de Experiencia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=600" alt="Electricista profesional" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CARACTERÍSTICAS
+    ========================================== -->
+    <section id="caracteristicas">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item animate-on-scroll">
+                    <span class="feature-icon">🛡️</span>
+                    <h4>Trabajo Garantizado</h4>
+                    <p>Garantía escrita en todos nuestros trabajos eléctricos</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <span class="feature-icon">🔧</span>
+                    <h4>Técnicos Certificados</h4>
+                    <p>Personal capacitado en normativas eléctricas vigentes</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <span class="feature-icon">⏱️</span>
+                    <h4>Respuesta Rápida</h4>
+                    <p>Llegamos en menos de 40 minutos en toda la ciudad</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <span class="feature-icon">💰</span>
+                    <h4>Precios Transparentes</h4>
+                    <p>Cotizaciones claras sin costos ocultos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SERVICIOS
+    ========================================== -->
+    <section id="servicios">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Nuestros Servicios</h2>
+                <p>Soluciones completas para todas tus necesidades eléctricas</p>
+                <div class="line"></div>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card animate-on-scroll">
+                    <span class="icon">🏠</span>
+                    <h3>Instalaciones Domiciliarias</h3>
+                    <p>Cableado completo, tableros de control, duchas eléctricas de alta seguridad, iluminación LED y refacciones generales.</p>
+                    <span class="tag">Residencial</span>
+                </div>
+                <div class="servicio-card animate-on-scroll">
+                    <span class="icon">🏭</span>
+                    <h3>Sistemas Industriales</h3>
+                    <p>Instalación de motores, transformadores, tableros trifásicos y mantenimiento preventivo para talleres y fábricas.</p>
+                    <span class="tag">Industrial</span>
+                </div>
+                <div class="servicio-card animate-on-scroll">
+                    <span class="icon">⚡</span>
+                    <h3>Emergencias 24/7</h3>
+                    <p>Detección y reparación inmediata de fallas críticas, cortes de energía imprevistos y sobrecargas eléctricas.</p>
+                    <span class="tag">Urgencia</span>
+                </div>
+                <div class="servicio-card animate-on-scroll">
+                    <span class="icon">💡</span>
+                    <h3>Iluminación y Diseño</h3>
+                    <p>Diseño de sistemas de iluminación eficiente para interiores y exteriores con tecnología LED de última generación.</p>
+                    <span class="tag">Diseño</span>
+                </div>
+                <div class="servicio-card animate-on-scroll">
+                    <span class="icon">📡</span>
+                    <h3>Domótica y Automatización</h3>
+                    <p>Sistemas de control inteligente para hogares y oficinas, automatización de iluminación y seguridad.</p>
+                    <span class="tag">Tecnología</span>
+                </div>
+                <div class="servicio-card animate-on-scroll">
+                    <span class="icon">🔍</span>
+                    <h3>Inspección y Diagnóstico</h3>
+                    <p>Evaluación completa de instalaciones eléctricas, detección de fallas ocultas y asesoría técnica especializada.</p>
+                    <span class="tag">Diagnóstico</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PROCESO
+    ========================================== -->
+    <section id="proceso">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Nuestro Proceso de Trabajo</h2>
+                <p>Una metodología transparente y eficiente para garantizar los mejores resultados</p>
+                <div class="line"></div>
+            </div>
+            <div class="proceso-grid">
+                <div class="proceso-step animate-on-scroll">
+                    <div class="number">1</div>
+                    <h4>Diagnóstico</h4>
+                    <p>Evaluamos tu situación y necesidades específicas</p>
+                </div>
+                <div class="proceso-step animate-on-scroll">
+                    <div class="number">2</div>
+                    <h4>Cotización</h4>
+                    <p>Te ofrecemos un presupuesto claro y detallado</p>
+                </div>
+                <div class="proceso-step animate-on-scroll">
+                    <div class="number">3</div>
+                    <h4>Ejecución</h4>
+                    <p>Realizamos el trabajo con los más altos estándares</p>
+                </div>
+                <div class="proceso-step animate-on-scroll">
+                    <div class="number">4</div>
+                    <h4>Garantía</h4>
+                    <p>Respaldamos nuestro trabajo y aseguramos tu satisfacción</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         GALERÍA
+    ========================================== -->
+    <section id="galeria">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Trabajos Recientes</h2>
+                <p>Proyectos que demuestran nuestra calidad y compromiso</p>
+                <div class="line"></div>
+            </div>
+            <div class="galeria-grid">
+                <div class="galeria-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=500" alt="Instalación eléctrica">
+                    <div class="overlay">
+                        <h4>Automatización de Talleres</h4>
+                        <p>El Alto - Zona 16 de Julio</p>
+                    </div>
+                </div>
+                <div class="galeria-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1498084393753-b411b2d26b34?auto=format&fit=crop&q=80&w=500" alt="Tablero eléctrico">
+                    <div class="overlay">
+                        <h4>Renovación de Tableros</h4>
+                        <p>El Alto - Villa Adela</p>
+                    </div>
+                </div>
+                <div class="galeria-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1565538810844-1e11941c1f21?auto=format&fit=crop&q=80&w=500" alt="Iluminación">
+                    <div class="overlay">
+                        <h4>Iluminación LED Comercial</h4>
+                        <p>La Paz - Sopocachi</p>
+                    </div>
+                </div>
+                <div class="galeria-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=500" alt="Instalación industrial">
+                    <div class="overlay">
+                        <h4>Sistema Trifásico</h4>
+                        <p>El Alto - Senkata</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         COBERTURA
+    ========================================== -->
+    <section id="cobertura">
+        <div class="container">
+            <div class="cobertura-grid">
+                <div class="animate-on-scroll">
+                    <span class="badge">📍 Cobertura</span>
+                    <h2 style="font-size: 34px; font-weight: 800; margin: 12px 0 16px;">Zonas de Atención</h2>
+                    <p style="color: var(--texto-secundario); margin-bottom: 24px;">Contamos con técnicos distribuidos estratégicamente para llegar en menos de 40 minutos a cualquier punto de El Alto y La Paz.</p>
+                    <ul class="cobertura-lista">
+                        <li>
+                            <span class="zona">📍 El Alto Centro</span>
+                            <span class="tiempo">15-20 min</span>
+                        </li>
+                        <li>
+                            <span class="zona">📍 El Alto Sur</span>
+                            <span class="tiempo">20-30 min</span>
+                        </li>
+                        <li>
+                            <span class="zona">📍 La Paz Centro</span>
+                            <span class="tiempo">25-35 min</span>
+                        </li>
+                        <li>
+                            <span class="zona">📍 La Paz Sur</span>
+                            <span class="tiempo">30-40 min</span>
+                        </li>
+                        <li>
+                            <span class="zona">📍 Zonas Industriales</span>
+                            <span class="tiempo">20-30 min</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cobertura-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600" alt="Mapa de cobertura" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         TESTIMONIOS
+    ========================================== -->
+    <section id="testimonios">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <p>Opiniones reales de personas que confían en nuestro trabajo</p>
+                <div class="line"></div>
+            </div>
+            <div class="testimonios-grid">
+                <div class="testimonio-card animate-on-scroll">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Excelente servicio, llegaron rápido y solucionaron el problema en menos de una hora. Muy profesionales y con precios justos."</blockquote>
+                    <div class="autor">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" alt="Cliente" class="avatar">
+                        <div class="autor-info">
+                            <h4>María González</h4>
+                            <span>El Alto - Ciudad Satélite</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio-card animate-on-scroll">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Contraté sus servicios para la instalación eléctrica de mi taller y quedé muy satisfecho. Trabajo limpio, ordenado y con garantía."</blockquote>
+                    <div class="autor">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" alt="Cliente" class="avatar">
+                        <div class="autor-info">
+                            <h4>Carlos Mamani</h4>
+                            <span>El Alto - Senkata</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio-card animate-on-scroll">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"La atención fue inmediata y el técnico muy capacitado. Resolvieron el problema en el mismo día. Totalmente recomendados."</blockquote>
+                    <div class="autor">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" alt="Cliente" class="avatar">
+                        <div class="autor-info">
+                            <h4>Ana Flores</h4>
+                            <span>La Paz - Sopocachi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CTA
+    ========================================== -->
+    <section id="cta">
+        <div class="container">
+            <h2 class="animate-on-scroll">⚡ ¿Necesitas ayuda eléctrica urgente?</h2>
+            <p class="animate-on-scroll">Atención inmediata las 24 horas. Cotizaciones sin compromiso y servicio garantizado.</p>
+            <div class="cta-btns animate-on-scroll">
+                <a href="https://wa.me/59177777777" class="btn btn-ambar">📱 WhatsApp</a>
+                <a href="tel:+59177777777" class="btn btn-white">📞 Llamar Ahora</a>
+                <a href="#cobertura" class="btn btn-outline" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.8);">Ver Cobertura</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>VOLT<span style="color: var(--acento-ambar);">ELALTO</span></h3>
+                    <p>Servicios eléctricos profesionales con los más altos estándares de calidad y seguridad para todo El Alto y La Paz.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios">Instalaciones</a></li>
+                        <li><a href="#servicios">Emergencias</a></li>
+                        <li><a href="#servicios">Mantenimiento</a></li>
+                        <li><a href="#servicios">Domótica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="tel:+59177777777">+591 77777777</a></li>
+                        <li><a href="mailto:info@voltelalto.com">info@voltelalto.com</a></li>
+                        <li><a href="#">El Alto - Bolivia</a></li>
+                        <li><a href="#">Lunes a Domingo 24/7</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VOLTELALTO. Todos los derechos reservados. Servicios eléctricos profesionales.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         SCROLL TOP
+    ========================================== -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="subirArriba()">↑</button>
+
+    <!-- ==========================================
+         SCRIPT
+    ========================================== -->
+    <script>
+        // ==========================================
+        // 1. HEADER SCROLL
+        // ==========================================
+        const header = document.getElementById('header');
+        const scrollBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 400) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        function subirArriba() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 2. MENÚ MÓVIL
+        // ==========================================
+        const hamburger = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+
+        function cerrarMobile() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
+
+        // ==========================================
+        // 3. ANIMACIONES AL SCROLL
+        // ==========================================
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+        function checkVisibility() {
+            animatedElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (rect.top < windowHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+
+        // ==========================================
+        // 4. EFECTO DE PARPADEO EN BADGE
+        // ==========================================
+        const badges = document.querySelectorAll('.badge');
+        badges.forEach(badge => {
+            setInterval(() => {
+                badge.style.opacity = badge.style.opacity === '0.5' ? '1' : '0.5';
+            }, 2000);
+        });
+
+        // ==========================================
+        // 5. GALERÍA MODAL
+        // ==========================================
+        document.querySelectorAll('.galeria-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 9999;
+                    cursor: pointer;
+                    animation: fadeIn 0.3s ease;
+                `;
+                const clone = img.cloneNode();
+                clone.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    border-radius: 12px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+                `;
+                overlay.appendChild(clone);
+                document.body.appendChild(overlay);
+                overlay.addEventListener('click', function() {
+                    this.remove();
+                });
+            });
+        });
+
+        // ==========================================
+        // 6. ESTILOS DE ANIMACIÓN
+        // ==========================================
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .animate-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ==========================================
+        // 7. CONTADOR DE ESTADÍSTICAS
+        // ==========================================
+        let statsAnimated = false;
+
+        function animarEstadisticas() {
+            if (statsAnimated) return;
+            const stats = [
+                { el: document.querySelector('.hero-stat:first-child h4'), target: 120, suffix: '+' },
+                { el: document.querySelector('.hero-stat:nth-child(2) h4'), target: 4.9, suffix: '' },
+                { el: document.querySelector('.hero-stat:last-child h4'), target: 15, suffix: '+' }
+            ];
+
+            stats.forEach(stat => {
+                if (!stat.el) return;
+                let current = 0;
+                const increment = stat.target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= stat.target) {
+                        current = stat.target;
+                        clearInterval(timer);
+                    }
+                    if (stat.target === 4.9) {
+                        stat.el.textContent = current.toFixed(1);
+                    } else {
+                        stat.el.textContent = Math.round(current) + stat.suffix;
+                    }
+                }, 20);
+            });
+
+            statsAnimated = true;
+        }
+
+        // Observer para activar el contador
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statsAnimated) {
+                        animarEstadisticas();
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(heroStats);
+        }
+
+        console.log('🚀 VOLTELALTO - Servicios Eléctricos Profesionales');
+        console.log('⚡ Sitio web optimizado y funcional');
+    </script>
+</body>
+</html>
