@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARIA · Pisa Fuerte | Tienda Oficial</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+                   ROOT & RESET
+                   ============================================================ */
+        :root {
+            --primary-yellow: #FFD700;
+            --dark-bg: #0a0a0a;
+            --light-bg: #f8f8f8;
+            --text-dark: #111111;
+            --text-muted: #666666;
+            --whatsapp-green: #25D366;
+            --border-color: #e5e5e5;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-yellow);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+                   ANIMACIONES GLOBALES
+                   ============================================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatAnimation {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes pulseGold {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes rotateSlow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+                   HEADER
+                   ============================================================ */
+        header {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg);
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            color: var(--primary-yellow);
+            transition: transform 0.6s ease;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-text .brand {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--primary-yellow);
+        }
+
+        .logo-text .slogan {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffffff;
+            font-style: italic;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 650px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 80px 12px 20px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background-color: #ffffff;
+            transition: box-shadow 0.3s;
+        }
+
+        .search-bar input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+
+        .search-actions {
+            position: absolute;
+            right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #555;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search-actions i {
+            transition: color 0.3s;
+        }
+
+        .search-actions i:hover {
+            color: var(--primary-yellow);
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 20px;
+        }
+
+        .header-icons a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .header-icons a:hover {
+            color: var(--primary-yellow);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary-yellow);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============================================================
+                   NAVIGATION
+                   ============================================================ */
+        nav {
+            background-color: var(--primary-yellow);
+            padding: 0 5%;
+            position: sticky;
+            top: 74px;
+            z-index: 999;
+            overflow-x: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            flex-wrap: nowrap;
+            min-width: max-content;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 14px 18px;
+            color: #000000;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #000;
+            transition: width 0.3s;
+        }
+
+        .nav-links li a:hover::after {
+            width: 60%;
+        }
+
+        .nav-links li a:hover {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-links li a .nav-badge {
+            background: #e74c3c;
+            color: #fff;
+            font-size: 8px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 5px;
+            font-weight: 700;
+            animation: pulseGold 2s infinite;
+        }
+
+        /* ============================================================
+                   HERO BANNER - CON SLIDER
+                   ============================================================ */
+        .hero-slider {
+            position: relative;
+            min-height: 520px;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            padding: 40px 8%;
+            background: linear-gradient(135deg, #e2e2e2 0%, #ffffff 50%, #f4ca00 100%);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide .hero-content {
+            max-width: 500px;
+            z-index: 2;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-slide .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 1;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .hero-slide .hero-image-container img {
+            max-width: 80%;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        .hero-title-box h1 {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            line-height: 0.9;
+            color: #000;
+        }
+
+        .hero-title-box .sub-slogan {
+            font-size: 22px;
+            font-style: italic;
+            font-weight: 700;
+            color: #222;
+            margin-top: 5px;
+        }
+
+        .hero-heading {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: #111;
+            margin-top: 25px;
+        }
+
+        .hero-heading span.highlight {
+            color: var(--primary-yellow);
+            background: #000;
+            padding: 2px 8px;
+            display: inline-block;
+        }
+
+        .hero-heading span.italic {
+            font-style: italic;
+            font-weight: 600;
+            text-transform: none;
+            color: var(--primary-yellow);
+            -webkit-text-stroke: 1px #000;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--primary-yellow);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .hero-dots button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #000;
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hero-dots button.active {
+            background: #000;
+            transform: scale(1.2);
+        }
+
+        .hero-dots button:hover {
+            background: #000;
+            transform: scale(1.1);
+        }
+
+        /* ============================================================
+                   CATEGORIES GRID - CON EFECTO HOVER
+                   ============================================================ */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 30px 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            position: relative;
+            height: 480px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-card .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+
+        .category-card .category-title {
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 1;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .category-card .category-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-yellow);
+        }
+
+        .category-card .explore-link {
+            color: var(--primary-yellow);
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .category-card .explore-link:hover {
+            gap: 14px;
+        }
+
+        /* ============================================================
+                   PRODUCTS SECTION - CON SLIDER DE IMÁGENES
+                   ============================================================ */
+        .section-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 4%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-yellow);
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title .gold {
+            color: var(--primary-yellow);
+        }
+
+        .section-link {
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2px;
+            transition: var(--transition);
+        }
+
+        .section-link:hover {
+            color: var(--primary-yellow);
+            border-color: var(--primary-yellow);
+        }
+
+        .products-slider {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background-color: #f5f5f5;
+        }
+
+        .product-image-wrapper .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .product-card:hover .product-image-wrapper .product-image {
+            transform: scale(1.05);
+        }
+
+        /* Slider de imágenes en producto */
+        .product-image-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .product-image-slider .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .product-image-slider .slide.active {
+            opacity: 1;
+        }
+
+        .product-image-slider .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+
+        .slide-nav button {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0;
+        }
+
+        .slide-nav button.active {
+            background: var(--primary-yellow);
+            border-color: var(--primary-yellow);
+            transform: scale(1.3);
+        }
+
+        .slide-arrows {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8px;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-image-wrapper:hover .slide-arrows {
+            opacity: 1;
+        }
+
+        .slide-arrows button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 12px;
+        }
+
+        .slide-arrows button:hover {
+            background: var(--primary-yellow);
+            color: #000;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            z-index: 3;
+        }
+
+        .product-badge.new {
+            background: var(--primary-yellow);
+            color: #000;
+        }
+
+        .product-badge.sale {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .product-badge.best {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--text-muted);
+            z-index: 3;
+        }
+
+        .product-wishlist:hover {
+            background: var(--primary-yellow);
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 16px 18px 20px;
+        }
+
+        .product-info .category-tag {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 4px 0 6px;
+            transition: color 0.3s;
+        }
+
+        .product-card:hover .product-info h4 {
+            color: var(--primary-yellow);
+        }
+
+        .product-info .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .product-info .price .old {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .product-info .rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 6px 0 10px;
+        }
+
+        .product-info .rating .stars {
+            color: var(--primary-yellow);
+            font-size: 13px;
+        }
+
+        .product-info .rating .count {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn-add {
+            flex: 1;
+            padding: 10px;
+            background: var(--dark-bg);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add:hover {
+            background: var(--primary-yellow);
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        .btn-quick {
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .btn-quick:hover {
+            border-color: var(--primary-yellow);
+            color: var(--primary-yellow);
+        }
+
+        /* ============================================================
+                   NEWSLETTER
+                   ============================================================ */
+        .newsletter-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #f8f8f8, #ffffff);
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .newsletter-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-title .gold {
+            color: var(--primary-yellow);
+        }
+
+        .newsletter-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            overflow: hidden;
+            padding: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form:focus-within {
+            border-color: var(--primary-yellow);
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            border: none;
+            padding: 14px 24px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            border: none;
+            padding: 14px 35px;
+            font-weight: 800;
+            font-size: 13px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-yellow);
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        /* ============================================================
+                   FEATURES
+                   ============================================================ */
+        .features-wave {
+            background: linear-gradient(180deg, #f2efe9 0%, #ffffff 100%);
+            padding: 50px 4% 60px 4%;
+            margin-top: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #d0d0d0;
+            border-radius: var(--radius);
+            padding: 35px 25px;
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-yellow);
+        }
+
+        .feature-card .feature-icon {
+            font-size: 32px;
+            color: var(--primary-yellow);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+                   SOCIAL SECTION
+                   ============================================================ */
+        .social-section {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            padding: 60px 4%;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .social-section h2 .gold {
+            color: var(--primary-yellow);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            background-color: #181818;
+            border: 1px solid #282828;
+            border-radius: var(--radius);
+            padding: 22px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-card:hover {
+            background-color: #252525;
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--primary-yellow);
+        }
+
+        .social-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .social-icon-box {
+            width: 42px;
+            height: 42px;
+            background-color: #282828;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #ffffff;
+            transition: var(--transition);
+        }
+
+        .social-card:hover .social-icon-box {
+            background-color: var(--primary-yellow);
+            color: #000;
+        }
+
+        .social-text .small-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #aaaaaa;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .social-text .platform-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .social-arrow {
+            color: var(--primary-yellow);
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .social-card:hover .social-arrow {
+            transform: translateX(5px);
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        footer {
+            background-color: #f4efea;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        footer .gold {
+            color: var(--primary-yellow);
+            font-weight: 700;
+        }
+
+        .footer-selectors {
+            display: flex;
+            gap: 10px;
+        }
+
+        .select-box {
+            background: #e8e2db;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+                   WHATSAPP FLOAT
+                   ============================================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.35);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.45);
+        }
+
+        .whatsapp-float i {
+            font-size: 22px;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1200px) {
+            .products-slider {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .categories-grid,
+            .social-grid,
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .products-slider {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .search-bar {
+                max-width: 100%;
+            }
+
+            .nav-bar {
+                top: auto;
+            }
+
+            .nav-links li a {
+                padding: 12px 14px;
+                font-size: 11px;
+            }
+
+            .hero-slide {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 5%;
+            }
+
+            .hero-slide .hero-content {
+                animation: fadeInUp 0.8s ease-out;
+            }
+
+            .hero-slide .hero-image-container {
+                animation: fadeInUp 0.8s ease-out;
+            }
+
+            .hero-slide .hero-image-container img {
+                max-width: 70%;
+            }
+
+            .hero-title-box h1 {
+                font-size: 40px;
+            }
+
+            .hero-heading {
+                font-size: 22px;
+            }
+
+            .categories-grid,
+            .social-grid,
+            .features-grid,
+            .products-slider {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card {
+                height: 300px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: var(--radius);
+            }
+
+            .newsletter-form button {
+                border-radius: 4px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .whatsapp-float span {
+                display: none;
+            }
+
+            .whatsapp-float {
+                padding: 14px 18px;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title-box h1 {
+                font-size: 32px;
+            }
+
+            .hero-heading {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-feather-pointed logo-icon"></i>
+            <div class="logo-text">
+                <span class="brand">ARIA</span>
+                <span class="slogan">Pisa Fuerte</span>
+            </div>
+        </a>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar productos, marcas...">
+            <div class="search-actions">
+                <i class="fa-solid fa-microphone"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <div class="header-icons">
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <a href="#">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count">3</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">MÁS VENDIDOS</a></li>
+            <li><a href="#">NOVEDADES <span class="nav-badge">🔥</span></a></li>
+            <li><a href="#">MUJERES <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a></li>
+            <li><a href="#">HOMBRES <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a></li>
+            <li><a href="#">NIÑ@S <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a></li>
+            <li><a href="#">ESCOLARES</a></li>
+            <li><a href="#">GIFT CARDS</a></li>
+            <li><a href="#">OFERTAS</a></li>
+        </ul>
+    </nav>
+
+    <!-- ============================================================
+    HERO SLIDER
+    ============================================================ -->
+    <section class="hero-slider" id="heroSlider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" data-index="0">
+            <div class="hero-content">
+                <div class="hero-badge">🔥 Colección 2026</div>
+                <div class="hero-title-box">
+                    <h1>ARIA</h1>
+                    <div class="sub-slogan">Pisa Fuerte</div>
+                </div>
+                <div class="hero-heading">
+                    EL MUNDO SE PARALIZA <br>
+                    <span class="highlight">POR 90 MINUTOS,</span> <br>
+                    <span class="italic">pero tu estilo</span> sigue jugando.
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80" alt="Zapatillas ARIA">
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide" data-index="1">
+            <div class="hero-content">
+                <div class="hero-badge">✨ Edición Limitada</div>
+                <div class="hero-title-box">
+                    <h1>NUEVA</h1>
+                    <div class="sub-slogan">Colección Primavera</div>
+                </div>
+                <div class="hero-heading">
+                    ESTILO <span class="highlight">RENOVADO</span> <br>
+                    <span class="italic">para cada paso</span> que das.
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80" alt="Nueva Colección">
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="hero-slide" data-index="2">
+            <div class="hero-content">
+                <div class="hero-badge">⚡ Ofertas Especiales</div>
+                <div class="hero-title-box">
+                    <h1>HASTA</h1>
+                    <div class="sub-slogan">50% de Descuento</div>
+                </div>
+                <div class="hero-heading">
+                    <span class="highlight">APROVECHA</span> AHORA <br>
+                    <span class="italic">no dejes pasar</span> esta oportunidad.
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=800&q=80" alt="Ofertas ARIA">
+            </div>
+        </div>
+
+        <!-- Hero Dots -->
+        <div class="hero-dots">
+            <button class="active" data-slide="0"></button>
+            <button data-slide="1"></button>
+            <button data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CATEGORIES GRID
+    ============================================================ -->
+    <section class="categories-grid animate-on-scroll">
+        <!-- Mujeres -->
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Sección Mujeres">
+            <div class="overlay">
+                <span class="category-tag">Colección</span>
+                <div class="category-title">MUJERES</div>
+                <a href="#" class="explore-link">Explorar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Hombres -->
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80" alt="Sección Hombres">
+            <div class="overlay">
+                <span class="category-tag">Colección</span>
+                <div class="category-title">HOMBRES</div>
+                <a href="#" class="explore-link">Explorar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Infantil -->
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?auto=format&fit=crop&w=800&q=80" alt="Sección Infantil">
+            <div class="overlay">
+                <span class="category-tag">Colección</span>
+                <div class="category-title">INFANTIL</div>
+                <a href="#" class="explore-link">Explorar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Ofertas -->
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Sección Ofertas">
+            <div class="overlay">
+                <span class="category-tag">Hasta -50%</span>
+                <div class="category-title">OFERTAS</div>
+                <a href="#" class="explore-link">Explorar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PRODUCTS SECTION
+    ============================================================ -->
+    <section class="section-container animate-on-scroll">
+        <div class="section-header">
+            <div class="section-title">NOVEDADES <span class="gold">🔥</span></div>
+            <a href="#" class="section-link">Ver todas <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="products-slider">
+            <!-- Producto 1 con slider -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image-slider" data-slider="0">
+                        <div class="slide active">
+                            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80" alt="Botín Negro">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=600&q=80" alt="Botín Negro 2">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80" alt="Botín Negro 3">
+                        </div>
+                        <div class="slide-arrows">
+                            <button class="prev-slide"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="next-slide"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <div class="slide-nav">
+                            <button class="active" data-slide="0"></button>
+                            <button data-slide="1"></button>
+                            <button data-slide="2"></button>
+                        </div>
+                    </div>
+                    <span class="product-badge new">Nuevo</span>
+                    <button class="product-wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <div class="category-tag">Calzado</div>
+                    <h4>Botín Dark Elegance</h4>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="count">(24)</span>
+                    </div>
+                    <div class="price">$149.99 <span class="old">$199.99</span></div>
+                    <div class="product-actions">
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+                        <button class="btn-quick"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image-slider" data-slider="1">
+                        <div class="slide active">
+                            <img src="https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=600&q=80" alt="Botín Taco">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80" alt="Botín Taco 2">
+                        </div>
+                        <div class="slide-arrows">
+                            <button class="prev-slide"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="next-slide"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <div class="slide-nav">
+                            <button class="active" data-slide="0"></button>
+                            <button data-slide="1"></button>
+                        </div>
+                    </div>
+                    <span class="product-badge sale">-20%</span>
+                    <button class="product-wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <div class="category-tag">Calzado</div>
+                    <h4>Botín Taco Ancho</h4>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="count">(18)</span>
+                    </div>
+                    <div class="price">$119.99 <span class="old">$149.99</span></div>
+                    <div class="product-actions">
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+                        <button class="btn-quick"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80" alt="Botín Hebilla" class="product-image">
+                    <span class="product-badge best">Best Seller</span>
+                    <button class="product-wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <div class="category-tag">Calzado</div>
+                    <h4>Botín Hebilla</h4>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="count">(42)</span>
+                    </div>
+                    <div class="price">$169.99</div>
+                    <div class="product-actions">
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+                        <button class="btn-quick"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image-slider" data-slider="2">
+                        <div class="slide active">
+                            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" alt="Sneaker Negro">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Sneaker Negro 2">
+                        </div>
+                        <div class="slide-arrows">
+                            <button class="prev-slide"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="next-slide"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <div class="slide-nav">
+                            <button class="active" data-slide="0"></button>
+                            <button data-slide="1"></button>
+                        </div>
+                    </div>
+                    <span class="product-badge new">Nuevo</span>
+                    <button class="product-wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <div class="category-tag">Calzado</div>
+                    <h4>Sneaker Urban</h4>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="count">(31)</span>
+                    </div>
+                    <div class="price">$134.99 <span class="old">$159.99</span></div>
+                    <div class="product-actions">
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+                        <button class="btn-quick"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    NEWSLETTER
+    ============================================================ -->
+    <section class="newsletter-section animate-on-scroll">
+        <h2 class="newsletter-title">Suscríbete y empieza a marcar <span class="gold">tendencia</span> con <span class="gold">Aria</span>!</h2>
+        <p class="newsletter-subtitle">Conoce novedades, descuentos exclusivos y mucho más!</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte a ARIA!')">
+            <input type="email" placeholder="Tu mejor correo" required>
+            <button type="submit">SUSCRÍBETE</button>
+        </form>
+    </section>
+
+    <!-- ============================================================
+    FEATURES
+    ============================================================ -->
+    <div class="features-wave animate-on-scroll">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-truck"></i></div>
+                <div class="feature-title">Envíos Rápidos</div>
+                <div class="feature-desc">A tu domicilio en 24/48h</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-regular fa-user"></i></div>
+                <div class="feature-title">Atención Personalizada</div>
+                <div class="feature-desc">Para tus pedidos y consultas</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-tag"></i></div>
+                <div class="feature-title">La mejor calidad</div>
+                <div class="feature-desc">Garantizada en cada producto</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-regular fa-face-smile"></i></div>
+                <div class="feature-title">Clientes Satisfechos</div>
+                <div class="feature-desc">Es nuestra prioridad</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SOCIAL SECTION
+    ============================================================ -->
+    <section class="social-section animate-on-scroll">
+        <h2>SÍGUENOS <span class="gold">🔥</span></h2>
+        <div class="social-grid">
+            <a href="#" class="social-card">
+                <div class="social-info">
+                    <div class="social-icon-box"><i class="fa-brands fa-tiktok"></i></div>
+                    <div class="social-text">
+                        <div class="small-text">DESCÚBRENOS EN</div>
+                        <div class="platform-name">TikTok</div>
+                    </div>
+                </div>
+                <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#" class="social-card">
+                <div class="social-info">
+                    <div class="social-icon-box"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="social-text">
+                        <div class="small-text">SÍGUENOS EN</div>
+                        <div class="platform-name">Instagram</div>
+                    </div>
+                </div>
+                <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#" class="social-card">
+                <div class="social-info">
+                    <div class="social-icon-box"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="social-text">
+                        <div class="small-text">ENCUÉNTRANOS EN</div>
+                        <div class="platform-name">Facebook</div>
+                    </div>
+                </div>
+                <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#" class="social-card">
+                <div class="social-info">
+                    <div class="social-icon-box"><i class="fa-solid fa-users"></i></div>
+                    <div class="social-text">
+                        <div class="small-text">ÚNETE A</div>
+                        <div class="platform-name">Nuestros grupos</div>
+                    </div>
+                </div>
+                <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
+        <div>Copyright© 2026 <span class="gold">ARIA</span> · Tecnología de Shopify</div>
+        <div class="footer-selectors">
+            <select class="select-box">
+                <option>ES</option>
+            </select>
+            <select class="select-box">
+                <option>BOB</option>
+            </select>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    WHATSAPP FLOAT
+    ============================================================ -->
+    <a href="#" class="whatsapp-float">
+        <span>Tienes dudas? Escríbenos</span>
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // =========================================================
+            // 1. HERO SLIDER
+            // =========================================================
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            const heroDots = document.querySelectorAll('.hero-dots button');
+            let currentHero = 0;
+            let heroInterval;
+
+            function goToHeroSlide(index) {
+                heroSlides.forEach(s => s.classList.remove('active'));
+                heroDots.forEach(d => d.classList.remove('active'));
+                heroSlides[index].classList.add('active');
+                heroDots[index].classList.add('active');
+                currentHero = index;
+            }
+
+            function nextHeroSlide() {
+                goToHeroSlide((currentHero + 1) % heroSlides.length);
+            }
+
+            heroDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    clearInterval(heroInterval);
+                    goToHeroSlide(parseInt(dot.dataset.slide));
+                    heroInterval = setInterval(nextHeroSlide, 5000);
+                });
+            });
+
+            heroInterval = setInterval(nextHeroSlide, 5000);
+
+            // =========================================================
+            // 2. PRODUCT IMAGE SLIDERS
+            // =========================================================
+            document.querySelectorAll('.product-image-slider').forEach(slider => {
+                const slides = slider.querySelectorAll('.slide');
+                const navButtons = slider.querySelectorAll('.slide-nav button');
+                const prevBtn = slider.querySelector('.prev-slide');
+                const nextBtn = slider.querySelector('.next-slide');
+                let current = 0;
+
+                function goTo(index) {
+                    slides.forEach(s => s.classList.remove('active'));
+                    navButtons.forEach(b => b.classList.remove('active'));
+                    slides[index].classList.add('active');
+                    navButtons[index].classList.add('active');
+                    current = index;
+                }
+
+                navButtons.forEach(btn => {
+                    btn.addEventListener('click', () => goTo(parseInt(btn.dataset.slide)));
+                });
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        goTo((current - 1 + slides.length) % slides.length);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        goTo((current + 1) % slides.length);
+                    });
+                }
+
+                // Auto-rotate cada 4 segundos
+                let autoInterval = setInterval(() => {
+                    goTo((current + 1) % slides.length);
+                }, 4000);
+
+                // Pausar auto-rotate al hacer hover
+                slider.addEventListener('mouseenter', () => clearInterval(autoInterval));
+                slider.addEventListener('mouseleave', () => {
+                    autoInterval = setInterval(() => {
+                        goTo((current + 1) % slides.length);
+                    }, 4000);
+                });
+            });
+
+            // =========================================================
+            // 3. SCROLL ANIMATIONS
+            // =========================================================
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // =========================================================
+            // 4. WISHLIST TOGGLE
+            // =========================================================
+            document.querySelectorAll('.product-wishlist').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-regular');
+                    icon.classList.toggle('fa-solid');
+                    if (icon.classList.contains('fa-solid')) {
+                        this.style.background = 'var(--primary-yellow)';
+                        this.style.color = '#000';
+                    } else {
+                        this.style.background = 'rgba(255,255,255,0.9)';
+                        this.style.color = 'var(--text-muted)';
+                    }
+                });
+            });
+
+            // =========================================================
+            // 5. ADD TO CART FEEDBACK
+            // =========================================================
+            document.querySelectorAll('.btn-add').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const original = this.innerHTML;
+                    this.innerHTML = '<i class="fa-solid fa-check"></i> ¡Agregado!';
+                    this.style.background = '#2ecc71';
+                    this.style.color = '#fff';
+                    setTimeout(() => {
+                        this.innerHTML = original;
+                        this.style.background = '';
+                        this.style.color = '';
+                    }, 2000);
+                });
+            });
+
+            console.log('🟡 ARIA · Pisa Fuerte - Tienda interactiva con sliders y animaciones');
+
+        })();
+    </script>
+
+</body>
+</html>

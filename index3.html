@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAHARA | Minimalist Luxury Wholesale</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. PALETA DE COLORES - MINIMALIST LUXURY (BASADA EN IMAGEN 1)
+           ========================================================================== */
+        :root {
+            --bg-base: #FDFBF7;           /* Blanco crema / Marfil suave */
+            --bg-surface: #F7F3EC;        /* Beige muy claro */
+            --bg-card: #FFFFFF;           /* Blanco puro para tarjetas */
+            --bg-dark: #1C1A17;           /* Negro cálido / Grafito */
+            
+            --gold-accent: #C5A059;       /* Dorado mate / Champán */
+            --gold-hover: #B38E46;        /* Dorado sobrio intenso */
+            --gold-light: #E8D8B6;        /* Champán claro */
+            --gold-soft-bg: #F4EFE6;      /* Fondo beige champagne */
+
+            --text-dark: #2B2823;         /* Texto principal oscuro */
+            --text-muted: #7A756C;        /* Texto secundario gris cálido */
+            --border-soft: #E6E0D5;       /* Bordes finos crema */
+
+            /* Transición suave */
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           2. BARRA SUPERIOR / AVISO MAYORISTA
+           ========================================================================== */
+        .top-banner {
+            background-color: var(--bg-dark);
+            color: var(--bg-base);
+            padding: 10px 5%;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-banner-text {
+            color: var(--gold-accent);
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           3. HEADER PRINCIPAL / NAVBAR (LOGO, BUSCADOR, ACCESOS)
+           ========================================================================== */
+        header {
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-soft);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* EDITAR LOGO AQUÍ */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        /* EDITAR BARRA DE BÚSQUEDA AQUÍ */
+        .search-box-wrapper {
+            flex: 1;
+            max-width: 550px;
+            position: relative;
+        }
+
+        .search-box-wrapper input {
+            width: 100%;
+            padding: 12px 90px 12px 20px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 30px;
+            color: var(--text-dark);
+            font-size: 13px;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .search-box-wrapper input:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.12);
+        }
+
+        .search-icons-group {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 12px;
+            color: var(--gold-accent);
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        /* EDITAR ACCESOS DE USUARIOS AQUÍ */
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-login-mayorista {
+            background: transparent;
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 9px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-login-mayorista:hover {
+            background: var(--gold-accent);
+            color: #ffffff;
+        }
+
+        .cart-button-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 16px;
+            transition: var(--transition-smooth);
+        }
+
+        .cart-button-icon:hover {
+            border-color: var(--gold-accent);
+            color: var(--gold-accent);
+        }
+
+        /* ==========================================================================
+           4. MENÚ DE NAVEGACIÓN
+           ========================================================================== */
+        nav {
+            background-color: var(--bg-surface);
+            padding: 0 5%;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .nav-links-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links-menu li a {
+            display: block;
+            padding: 14px 22px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links-menu li a:hover {
+            color: var(--gold-accent);
+        }
+
+        .nav-links-menu li a.highlight-menu-btn {
+            background-color: var(--gold-accent);
+            color: #ffffff;
+            border-radius: 4px;
+            margin: 0 8px;
+        }
+
+        .nav-links-menu li a.highlight-menu-btn:hover {
+            background-color: var(--gold-hover);
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+           5. SECCIÓN HERO (BANNER PRINCIPAL MINIMALISTA)
+           ========================================================================== */
+        .hero-luxury {
+            position: relative;
+            min-height: 520px;
+            background-color: var(--bg-surface);
+            display: flex;
+            align-items: center;
+            padding: 60px 8%;
+            border-bottom: 1px solid var(--border-soft);
+            overflow: hidden;
+        }
+
+        .hero-luxury-content {
+            max-width: 580px;
+            z-index: 2;
+        }
+
+        .hero-luxury-badge {
+            display: inline-block;
+            background-color: var(--gold-soft-bg);
+            border: 1px solid var(--gold-light);
+            color: var(--gold-accent);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-luxury-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 22px;
+            color: var(--text-dark);
+        }
+
+        .hero-luxury-title span {
+            color: var(--gold-accent);
+            font-style: italic;
+        }
+
+        .hero-luxury-description {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        /* EDITAR BOTONES HERO AQUÍ */
+        .hero-buttons-group {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-luxury-gold {
+            background-color: var(--gold-accent);
+            color: #ffffff;
+            padding: 14px 34px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.25);
+        }
+
+        .btn-luxury-gold:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-luxury-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--text-dark);
+            padding: 14px 34px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+        }
+
+        .btn-luxury-outline:hover {
+            background: var(--text-dark);
+            color: #ffffff;
+        }
+
+        .hero-image-box {
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42%;
+            z-index: 1;
+        }
+
+        .hero-image-box img {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-soft);
+        }
+
+        /* ==========================================================================
+           6. SECCIÓN CATEGORÍAS PRINCIPALES
+           ========================================================================== */
+        .categories-container {
+            padding: 90px 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-header-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+        }
+
+        .section-header-title p {
+            color: var(--gold-accent);
+            font-size: 12px;
+            margin-top: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .categories-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .category-luxury-card {
+            position: relative;
+            height: 480px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-soft);
+            transition: var(--transition-smooth);
+        }
+
+        .category-luxury-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--gold-accent);
+        }
+
+        .category-luxury-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .category-luxury-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-luxury-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(253,251,247,0) 30%, rgba(28,26,23,0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px;
+            z-index: 2;
+        }
+
+        .category-tag {
+            font-size: 11px;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .category-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .btn-category-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold-light);
+            padding-bottom: 4px;
+            width: fit-content;
+            transition: var(--transition-smooth);
+        }
+
+        .category-luxury-card:hover .btn-category-action {
+            color: #ffffff;
+            border-color: #ffffff;
+            gap: 15px;
+        }
+
+        /* ==========================================================================
+           7. SECCIÓN NOVEDADES / PRODUCTOS
+           ========================================================================== */
+        .products-luxury-section {
+            padding: 40px 4% 90px 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 18px;
+        }
+
+        .section-top-bar h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--text-dark);
+        }
+
+        .link-see-all {
+            color: var(--gold-accent);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+        }
+
+        .link-see-all:hover {
+            color: var(--gold-hover);
+        }
+
+        .products-luxury-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product-luxury-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 6px;
+            padding: 16px;
+            transition: var(--transition-smooth);
+        }
+
+        .product-luxury-card:hover {
+            border-color: var(--gold-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background-color: var(--bg-surface);
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-surface);
+            padding: 10px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .price-item-unit {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .price-item-wholesale {
+            font-size: 11px;
+            color: var(--gold-accent);
+            font-weight: 800;
+        }
+
+        /* ==========================================================================
+           8. BENEFICIOS / FEATURES
+           ========================================================================== */
+        .features-luxury-bar {
+            background-color: var(--bg-surface);
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+            padding: 60px 4%;
+        }
+
+        .features-luxury-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-luxury-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 6px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .feature-luxury-icon {
+            font-size: 28px;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+        }
+
+        .feature-luxury-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .feature-luxury-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           9. SECCIÓN REDES SOCIALES (CON EFECTO HOVER DE LAS IMÁGENES 2, 3, 4 Y 5)
+           ========================================================================== */
+        .social-luxury-section {
+            background-color: var(--bg-dark);
+            padding: 80px 4%;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .social-luxury-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            color: var(--gold-accent);
+            margin-bottom: 45px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .social-luxury-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        /* TARJETA BASE DE RED SOCIAL EN ESTADO NORMAL */
+        .social-luxury-card {
+            background-color: #26231F;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 22px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-luxury-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-align: left;
+            z-index: 2;
+        }
+
+        .social-luxury-icon {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #ffffff;
+            transition: var(--transition-smooth);
+        }
+
+        .social-luxury-text .sub-text {
+            font-size: 9px;
+            text-transform: uppercase;
+            color: #a09a90;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .social-luxury-text .platform-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .social-luxury-arrow {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+
+        /* --------------------------------------------------------------------------
+           EFECTOS HOVER PERSONALIZADOS POR RED SOCIAL (IMÁGENES REFERENCIA)
+           -------------------------------------------------------------------------- */
+
+        /* 1. HOVER TIKTOK (VERDE AGUA A ROSADO / NEON GRADIENT) */
+        .social-luxury-card.tiktok:hover {
+            background: linear-gradient(135deg, #25f4ee 0%, #000000 50%, #fe2c55 100%);
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(37, 244, 238, 0.25);
+        }
+
+        /* 2. HOVER INSTAGRAM (PÚRPURA -> ROJO -> AMARILLO) */
+        .social-luxury-card.instagram:hover {
+            background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(253, 29, 29, 0.3);
+        }
+
+        /* 3. HOVER FACEBOOK (AZUL OFICIAL) */
+        .social-luxury-card.facebook:hover {
+            background: linear-gradient(135deg, #1877f2 0%, #0d52ab 100%);
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.3);
+        }
+
+        /* 4. HOVER GRUPOS / WHATSAPP (AMARILLO VIBRANTE / GOLD) */
+        .social-luxury-card.groups:hover {
+            background: linear-gradient(135deg, #f1c40f 0%, #e67e22 100%);
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(241, 196, 15, 0.3);
+        }
+
+        /* CAMBIOS EN TEXTOS E ICONOS AL PASAR EL MOUSE EN CUALQUIERA */
+        .social-luxury-card:hover .social-luxury-text .sub-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .social-luxury-card:hover .social-luxury-icon {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+
+        .social-luxury-card:hover .social-luxury-arrow {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        /* ==========================================================================
+           10. FOOTER Y BOTÓN FLOTANTE WHATSAPP
+           ========================================================================== */
+        footer {
+            background-color: #12110f;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #888278;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* EDITAR BOTÓN FLOTANTE WHATSAPP AQUÍ */
+        .whatsapp-luxury-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: #ffffff;
+            border-radius: 30px;
+            padding: 12px 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        .whatsapp-luxury-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .categories-cards-grid, .products-luxury-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-luxury-grid, .social-luxury-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-image-box { display: none; }
+            .hero-luxury-content { max-width: 100%; text-align: center; }
+            .hero-buttons-group { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; }
+            .search-box-wrapper { width: 100%; }
+            .nav-links-menu { flex-direction: column; }
+            .categories-cards-grid, .products-luxury-grid, .features-luxury-grid, .social-luxury-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         TOP BANNER (ANUNCIOS Y ENVIOS)
+    ========================================== -->
+    <div class="top-banner">
+        <div><i class="fa-solid fa-crown" style="color: var(--gold-accent);"></i> VENTA EXCLUSIVA POR UNIDAD Y DOCENA</div>
+        <div class="top-banner-text">CATÁLOGO MAYORISTA 2026 DISPONIBLE</div>
+    </div>
+
+    <!-- ==========================================
+         HEADER / NAVBAR PRINCIPAL
+    ========================================== -->
+    <header>
+        <!-- EDITAR LOGO -->
+        <a href="#" class="logo-container">
+            <div>
+                <div class="logo-brand">NAHARA</div>
+                <div class="logo-sub">Wholesale & Retail</div>
+            </div>
+        </a>
+
+        <!-- EDITAR BUSCADOR -->
+        <div class="search-box-wrapper">
+            <input type="text" placeholder="Buscar prendas, calzados, accesorios...">
+            <div class="search-icons-group">
+                <i class="fa-solid fa-microphone"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <!-- EDITAR ACCESOS DE USUARIOS -->
+        <div class="user-actions">
+            <!-- BOTÓN INICIAR SESIÓN (CLIENTES MAYORISTAS) -->
+            <a href="#" class="btn-login-mayorista">
+                <i class="fa-regular fa-user"></i>
+                <span>INGRESAR MAYORISTA</span>
+            </a>
+            
+            <!-- BOTÓN CARRITO -->
+            <a href="#" class="cart-button-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         NAVEGACIÓN PRINCIPAL
+    ========================================== -->
+    <nav>
+        <ul class="nav-links-menu">
+            <!-- EDITAR ENLACES DEL MENÚ AQUÍ -->
+            <li><a href="#">INICIO</a></li>
+            <li><a href="#">MÁS VENDIDOS</a></li>
+            <li><a href="#">NOVEDADES</a></li>
+            <li><a href="#">MUJERES <i class="fa-solid fa-chevron-down" style="font-size: 9px;"></i></a></li>
+            <li><a href="#">HOMBRES <i class="fa-solid fa-chevron-down" style="font-size: 9px;"></i></a></li>
+            <li><a href="#">NIÑ@S <i class="fa-solid fa-chevron-down" style="font-size: 9px;"></i></a></li>
+            <!-- BOTÓN DESTACADO PRECIO DOCENA -->
+            <li><a href="#" class="highlight-menu-btn"><i class="fa-solid fa-tag"></i> PRECIO POR DOCENA</a></li>
+            <li><a href="#">OFERTAS</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==========================================
+         SECCIÓN HERO (BANNER PRINCIPAL)
+    ========================================== -->
+    <section class="hero-luxury">
+        <div class="hero-luxury-content">
+            <span class="hero-luxury-badge">DISTRIBUIDORA DIRECTA</span>
+            <h1 class="hero-luxury-title">Elegancia & Moda en <span>Calzado</span></h1>
+            <p class="hero-luxury-description">
+                Especialistas en surtir tiendas y negocios minoristas en todo el país. Accede a precios especiales por docena registrándote como cliente mayorista.
+            </p>
+
+            <!-- EDITAR BOTONES DEL HERO AQUÍ -->
+            <div class="hero-buttons-group">
+                <!-- BOTÓN 1: MAYORISTAS -->
+                <a href="#" class="btn-luxury-gold">COMPRAR POR DOCENA</a>
+                <!-- BOTÓN 2: MINORISTAS -->
+                <a href="#" class="btn-luxury-outline">COMPRAR POR UNIDAD</a>
+            </div>
+        </div>
+
+        <!-- EDITAR IMAGEN PRINCIPAL DEL HERO AQUÍ -->
+        <div class="hero-image-box">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="NAHARA Colección Minimalist">
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN CATEGORÍAS (MUJER, HOMBRE, NIÑOS)
+    ========================================== -->
+    <section class="categories-container">
+        <div class="section-header-title">
+            <h2>NUESTRAS CATEGORÍAS</h2>
+            <p>Explora nuestras colecciones disponibles para venta inmediata</p>
+        </div>
+
+        <div class="categories-cards-grid">
+            <!-- EDITAR CARD MUJERES -->
+            <div class="category-luxury-card">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Colección Mujeres NAHARA">
+                <div class="category-luxury-overlay">
+                    <span class="category-tag">Línea Femenina</span>
+                    <div class="category-name">MUJERES</div>
+                    <!-- BOTÓN VER MUJERES -->
+                    <a href="#" class="btn-category-action">VER CATÁLOGO <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- EDITAR CARD HOMBRES -->
+            <div class="category-luxury-card">
+                <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80" alt="Colección Hombres NAHARA">
+                <div class="category-luxury-overlay">
+                    <span class="category-tag">Línea Masculina</span>
+                    <div class="category-name">HOMBRES</div>
+                    <!-- BOTÓN VER HOMBRES -->
+                    <a href="#" class="btn-category-action">VER CATÁLOGO <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- EDITAR CARD NIÑOS -->
+            <div class="category-luxury-card">
+                <img src="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?auto=format&fit=crop&w=800&q=80" alt="Colección Infantil NAHARA">
+                <div class="category-luxury-overlay">
+                    <span class="category-tag">Línea Infantil</span>
+                    <div class="category-name">NIÑ@S</div>
+                    <!-- BOTÓN VER NIÑOS -->
+                    <a href="#" class="btn-category-action">VER CATÁLOGO <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN NOVEDADES / PRODUCTOS
+    ========================================== -->
+    <section class="products-luxury-section">
+        <div class="section-top-bar">
+            <h3>NOVEDADES DESTACADAS</h3>
+            <!-- BOTÓN ENLACE VER TODO -->
+            <a href="#" class="link-see-all">VER CATÁLOGO COMPLETO <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <div class="products-luxury-grid">
+            <!-- PRODUCTO 1 -->
+            <div class="product-luxury-card">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Producto NAHARA">
+                <div class="product-name">Botín Elegante Femenino</div>
+                <!-- PRECIOS -->
+                <div class="price-row">
+                    <span class="price-item-unit">Unidad: Bs. ---</span>
+                    <span class="price-item-wholesale">Docena: Consultar</span>
+                </div>
+            </div>
+
+            <!-- PRODUCTO 2 -->
+            <div class="product-luxury-card">
+                <img src="https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Producto NAHARA">
+                <div class="product-name">Calzado Casual de Cuero</div>
+                <!-- PRECIOS -->
+                <div class="price-row">
+                    <span class="price-item-unit">Unidad: Bs. ---</span>
+                    <span class="price-item-wholesale">Docena: Consultar</span>
+                </div>
+            </div>
+
+            <!-- PRODUCTO 3 -->
+            <div class="product-luxury-card">
+                <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Producto NAHARA">
+                <div class="product-name">Sneakers Confort Premium</div>
+                <!-- PRECIOS -->
+                <div class="price-row">
+                    <span class="price-item-unit">Unidad: Bs. ---</span>
+                    <span class="price-item-wholesale">Docena: Consultar</span>
+                </div>
+            </div>
+
+            <!-- PRODUCTO 4 -->
+            <div class="product-luxury-card">
+                <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Producto NAHARA">
+                <div class="product-name">Botín Urbano Moderno</div>
+                <!-- PRECIOS -->
+                <div class="price-row">
+                    <span class="price-item-unit">Unidad: Bs. ---</span>
+                    <span class="price-item-wholesale">Docena: Consultar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN BENEFICIOS
+    ========================================== -->
+    <div class="features-luxury-bar">
+        <div class="features-luxury-grid">
+            <div class="feature-luxury-card">
+                <div class="feature-luxury-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <div class="feature-luxury-title">Precios por Docena</div>
+                <div class="feature-luxury-desc">Descuentos especiales para mayoristas</div>
+            </div>
+
+            <div class="feature-luxury-card">
+                <div class="feature-luxury-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                <div class="feature-luxury-title">Envíos Asegurados</div>
+                <div class="feature-luxury-desc">Despachos diarios a todo el país</div>
+            </div>
+
+            <div class="feature-luxury-card">
+                <div class="feature-luxury-icon"><i class="fa-solid fa-headset"></i></div>
+                <div class="feature-luxury-title">Atención VIP</div>
+                <div class="feature-luxury-desc">Asesoría directa para comerciantes</div>
+            </div>
+
+            <div class="feature-luxury-card">
+                <div class="feature-luxury-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="feature-luxury-title">Garantía Directa</div>
+                <div class="feature-luxury-desc">Garantía en cada lote enviado</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SECCIÓN REDES SOCIALES (CON EFECTO HOVER INTERACTIVO)
+    ========================================== -->
+    <section class="social-luxury-section">
+        <h2>SÍGUENOS EN REDES</h2>
+        <div class="social-luxury-grid">
+            
+            <!-- TARJETA TIKTOK (EFECTO HOVER NEON / DEGRADADO) -->
+            <a href="#" class="social-luxury-card tiktok">
+                <div class="social-luxury-info">
+                    <div class="social-luxury-icon"><i class="fa-brands fa-tiktok"></i></div>
+                    <div class="social-luxury-text">
+                        <div class="sub-text">DESCÚBRENOS EN</div>
+                        <div class="platform-name">TikTok</div>
+                    </div>
+                </div>
+                <div class="social-luxury-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- TARJETA INSTAGRAM (EFECTO HOVER GRADIENTE DE INSTAGRAM) -->
+            <a href="#" class="social-luxury-card instagram">
+                <div class="social-luxury-info">
+                    <div class="social-luxury-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="social-luxury-text">
+                        <div class="sub-text">SÍGUENOS EN</div>
+                        <div class="platform-name">Instagram</div>
+                    </div>
+                </div>
+                <div class="social-luxury-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- TARJETA FACEBOOK (EFECTO HOVER AZUL FACEBOOK) -->
+            <a href="#" class="social-luxury-card facebook">
+                <div class="social-luxury-info">
+                    <div class="social-luxury-icon"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="social-luxury-text">
+                        <div class="sub-text">ENCUÉNTRANOS EN</div>
+                        <div class="platform-name">Facebook</div>
+                    </div>
+                </div>
+                <div class="social-luxury-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- TARJETA GRUPOS / WHATSAPP (EFECTO HOVER GOLD / YELLOW) -->
+            <a href="#" class="social-luxury-card groups">
+                <div class="social-luxury-info">
+                    <div class="social-luxury-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="social-luxury-text">
+                        <div class="sub-text">ÚNETE A</div>
+                        <div class="platform-name">Nuestros grupos</div>
+                    </div>
+                </div>
+                <div class="social-luxury-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+    <footer>
+        <div>Copyright © 2026 NAHARA Store | Todos los derechos reservados</div>
+        <div>E-commerce Mayorista & Minorista</div>
+    </footer>
+
+    <!-- EDITAR BOTÓN FLOTANTE WHATSAPP AQUÍ -->
+    <a href="#" class="whatsapp-luxury-btn">
+        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+        <span>¿Tienes dudas? Escríbenos</span>
+    </a>
+
+</body>
+</html>
